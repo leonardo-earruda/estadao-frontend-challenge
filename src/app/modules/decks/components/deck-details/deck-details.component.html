@@ -1,0 +1,72 @@
+<div class="flex flex-col gap-6 justify-center items-center">
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name || '-'}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="supertype">
+      <mat-header-cell *matHeaderCellDef> Supertipo </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.supertype || '-'}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="hp">
+      <mat-header-cell *matHeaderCellDef> Pontos de vida </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.hp || '-'}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="level">
+      <mat-header-cell *matHeaderCellDef> Level </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.level || '-' }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="rarity">
+      <mat-header-cell *matHeaderCellDef> Raridade </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.rarity || '-'}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Propriedades de tipo
+        </mat-panel-title>
+        <mat-panel-description>
+          Quantidade de types e supertypes.
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="flex flex-col gap-6">
+        <div>
+          <span>
+            SuperType (Pokemon):
+          </span>
+          <span class="font-bold">
+            {{pokemonSupertypeAmount}}
+          </span>
+        </div>
+        <div>
+          <span>
+            SuperType (Treinador):
+          </span>
+          <span class="font-bold">
+            {{pokemonSupertypeAmount}}
+          </span>
+        </div>
+        <div>
+          <span>
+            Unique Types (Cores do baralho):
+          </span>
+          <span class="font-bold">
+            {{uniqueDeckType.size}}
+          </span>
+        </div>
+      </div>
+    </mat-expansion-panel>
+
+  </mat-accordion>
+
+</div>

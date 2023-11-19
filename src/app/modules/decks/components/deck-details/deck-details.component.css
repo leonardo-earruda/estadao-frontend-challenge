@@ -1,0 +1,14 @@
+.mat-mdc-table {
+  border-radius: 10px;
+  width: 100%;
+  max-height: 550px;
+  overflow: auto;
+}
+
+.mat-column-name {
+  height: 72px;
+}
+
+mat-accordion {
+  width: 100%;
+}

@@ -1,0 +1,21 @@
+<div class="bg-gray-900 px-24 py-8 h-screen font-mono text-white">
+  <mat-toolbar class=" bg-gray-900 h-[72px] flex flex-row text-white font-bold justify-between">
+
+    <img class="w-12" src="../../../assets/pokeball.svg">
+    <nav>
+      <ul class="flex flex-row gap-12">
+        <li>
+          <a [routerLink]="'/cards/all'">CARTAS</a>
+        </li>
+        <li>
+          <a [routerLink]="'/decks/all'">BARALHOS</a>
+        </li>
+        <li>
+          <a [routerLink]="'/decks/new'">NOVO BARALHO</a>
+        </li>
+      </ul>
+    </nav>
+
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</div>
