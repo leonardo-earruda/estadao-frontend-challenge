@@ -4,7 +4,8 @@ import { Image } from './Image';
 export interface Card {
   id: string;
   evolvesFrom: string;
-  superType: string;
+  supertype: string;
+  types: string[];
   images: Image;
   name: string;
   attacks: Attack[];

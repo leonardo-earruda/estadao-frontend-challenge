@@ -1,4 +1,4 @@
-<div class="flex flex-col gap-6 justify-center items-center">
+<div class="flex flex-col gap-12 mt-6 justify-center items-center xl:h-[86vh]">
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
@@ -48,12 +48,13 @@
             {{pokemonSupertypeAmount}}
           </span>
         </div>
+
         <div>
           <span>
             SuperType (Treinador):
           </span>
           <span class="font-bold">
-            {{pokemonSupertypeAmount}}
+            {{trainerSupertypeAmount}}
           </span>
         </div>
         <div>

@@ -1,22 +1,19 @@
-<div class="flex flex-row">
+<div class="flex flex-row h-[86vh]">
 
   <div class="flex flex-col gap-4 p-6" *ngFor="let deck of allDecks; let i = index">
 
-    <span class="font-bold text-xl"> {{deck.name || 'Baralho sem nome'}} </span>
+    <span class="font-bold text-md xl:text-xl"> {{deck.name || 'Baralho sem nome'}} </span>
 
     <div class="relative" (mouseenter)="onHover(deck)" (mouseleave)="onHover(deck)">
-      <img class="w-64 hover:opacity-40 hover:backdrop-blur-10" src="../../../../../assets/upside-down-card.jpg">
+      <img class="w-64 hover:opacity-40 hover:backdrop-blur-10 relative"
+        src="../../../../../assets/upside-down-card.jpg">
 
-      <div *ngIf="currentIndex === i && isHovering" class="absolute top-0 left-0">
-        <button mat-raised-button color="primary" (click)="updateDeck(deck.id)">Editar</button>
-      </div>
-
-      <div *ngIf="currentIndex === i && isHovering" class="absolute top-10 right-0">
-        <button mat-raised-button color="accent" [routerLink]="['/decks/details', deck.id]">Detalhes</button>
-      </div>
-
-      <div *ngIf="currentIndex === i && isHovering" class="absolute top-0 right-0">
-        <button mat-raised-button color="warn" (click)="removeDeck(deck.id)">Excluir</button>
+      <div *ngIf="currentIndex === i && isHovering"
+        class="absolute bottom-0 left-0 w-full flex justify-center items-end">
+        <button mat-raised-button color="primary" (click)="updateDeck(deck.id)" class="m-2">Editar</button>
+        <button mat-raised-button color="accent" [routerLink]="['/decks/details', deck.id]"
+          class="m-2">Detalhes</button>
+        <button mat-raised-button color="warn" (click)="removeDeck(deck.id)" class="m-2">Excluir</button>
       </div>
     </div>
   </div>

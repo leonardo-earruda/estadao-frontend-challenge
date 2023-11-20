@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
+import { Card } from 'src/app/modules/cards/models/Card';
+import { Deck } from '../../models/Deck';
 
 @Component({
   selector: 'app-deck-details',
@@ -8,10 +10,10 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./deck-details.component.css'],
 })
 export class DeckDetailsComponent implements OnInit {
-  dataSource: MatTableDataSource<any> = new MatTableDataSource();
+  dataSource: MatTableDataSource<Card> = new MatTableDataSource();
   displayedColumns: string[] = ['name', 'supertype', 'hp', 'level', 'rarity'];
   id: string;
-  currentDeck: any;
+  currentDeck: Deck;
 
   constructor(private route: ActivatedRoute) {}
 
@@ -24,23 +26,25 @@ export class DeckDetailsComponent implements OnInit {
   getDeck() {
     const decks = JSON.parse(localStorage.getItem('decks')!);
 
-    this.currentDeck = decks.find((res: any) => res.id.includes(this.id));
+    this.currentDeck = decks.find((res: Deck) => res.id.includes(this.id));
   }
 
   get pokemonSupertypeAmount() {
-    return this.currentDeck.cards.filter(
-      (card: any) => card.supertype === 'Pokémon'
+    return this.currentDeck?.cards?.filter(
+      (card: Card) => card.supertype === 'Pokémon'
     ).length;
   }
 
   get trainerSupertypeAmount() {
-    return this.currentDeck.cards.filter(
-      (card: any) => card.supertype === 'Pokémon'
+    return this.currentDeck?.cards?.filter(
+      (card: Card) => card.supertype === 'Trainer'
     ).length;
   }
 
   get uniqueDeckType() {
-    const allTypes = this.currentDeck.cards.flatMap((card: any) => card.types);
+    const allTypes = this.currentDeck?.cards?.flatMap(
+      (card: Card) => card.types
+    );
     return new Set(allTypes);
   }
 }

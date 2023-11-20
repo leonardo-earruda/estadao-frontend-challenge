@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class CardService {
   constructor(private http: HttpClient) {}
 
-  getAll() {
-    return this.http.get('https://api.pokemontcg.io/v2/cards');
+  getAll(name?: string, pageSize?: number) {
+    return this.http.get(`https://api.pokemontcg.io/v2/cards?q=name:${name}&pageSize=${pageSize}`);
   }
 }

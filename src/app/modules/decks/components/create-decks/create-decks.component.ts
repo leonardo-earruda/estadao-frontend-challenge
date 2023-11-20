@@ -1,9 +1,11 @@
 import { moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PAGE_SIZES } from 'src/app/config/pageSizes';
 import { Card } from 'src/app/modules/cards/models/Card';
 import { CardService } from 'src/app/modules/cards/services/card.service';
+import { Deck } from '../../models/Deck';
 
 @Component({
   selector: 'app-create-decks',
@@ -13,11 +15,14 @@ import { CardService } from 'src/app/modules/cards/services/card.service';
 export class CreateDecksComponent implements OnInit {
   availableCards: Card[] = [];
   choosenCards: Card[] = [];
-  allDecks: Array<{ name: string; cards: Array<any>; id: string }> = [];
+  allDecks: Deck[] = [];
   isEditing: boolean = false;
   id: string;
-  currentDeck: any = '';
+  currentDeck: Deck;
   deckName: FormControl = new FormControl(null, [Validators.required]);
+  filterForm: FormGroup;
+  pageSizes: number[] = PAGE_SIZES;
+  isLoading: boolean = false;
 
   constructor(
     private cardService: CardService,
@@ -26,15 +31,32 @@ export class CreateDecksComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initializeFormGroup();
+    this.getCards();
     this.isEditing = !!this.route.snapshot.params['id'];
     this.id = this.route.snapshot.params['id'];
     this.allDecks = JSON.parse(localStorage.getItem('decks')!);
-    this.getAllCards();
     this.handleEditing();
   }
 
-  private getAllCards() {
-    this.cardService.getAll().subscribe((res: any) => {
+  initializeFormGroup() {
+    this.filterForm = new FormGroup({
+      name: new FormControl(''),
+      pageSize: new FormControl(''),
+    });
+  }
+
+  public getCards() {
+    this.isLoading = true;
+    const name = this.filterForm.value.name
+      ? this.filterForm.value.name
+      : 'charizard';
+    const pageSize = this.filterForm.value.pageSize
+      ? this.filterForm.value.pageSize
+      : null;
+
+    this.cardService.getAll(name, pageSize).subscribe((res: any) => {
+      this.isLoading = false;
       this.availableCards = res.data;
     });
   }

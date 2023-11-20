@@ -10,8 +10,6 @@ export class AllDecksComponent implements OnInit {
   allDecks: Array<{ name: string; cards: Array<any>; id: string }> = [];
   isHovering: boolean = false;
   currentIndex: number;
-  showDetails = false;
-  isDrawerOpen: boolean = false;
 
   constructor(private router: Router) {}
 
@@ -37,5 +35,4 @@ export class AllDecksComponent implements OnInit {
     this.router.navigate(['decks/new', id]);
   }
 
-  openDetailsDialog() {}
 }

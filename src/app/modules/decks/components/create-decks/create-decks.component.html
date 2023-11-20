@@ -1,27 +1,53 @@
-<div class="flex justify-end">
-  <mat-form-field appearance="fill">
-    <input matInput [formControl]="deckName" placeholder="Insira o nome aqui">
-  </mat-form-field>
-</div>
-<div class="flex flex-row gap-6 pl-6">
-  <div class="grid grid-cols-3 gap-6 p-6 w-1/2 max-h-[650px] overflow-auto bg-gray-800" cdkDropList
-    #todoList="cdkDropList" [cdkDropListData]="availableCards" [cdkDropListConnectedTo]="[doneList]"
-    (cdkDropListDropped)="drop($event)">
-    <div *ngFor="let item of availableCards" cdkDrag>
-      <img [src]="item.images.small">
+<div [formGroup]="filterForm" class="min-h-screen mt-16">
+  <div class="flex flex-row justify-between">
+    <div class="flex flex-row gap-4 md:max-w-md lg:max-w-4xl">
+      <mat-form-field class="pl-6" appearance="fill">
+        <input matInput formControlName="name" placeholder="Filtre por nome">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-select formControlName="pageSize" placeholder="Tamanho da página">
+          <mat-option *ngFor="let size of pageSizes" [value]="size">
+            {{size}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" style="height: 55px" (click)="getCards()"> Pesquisar</button>
+
+    </div>
+
+    <mat-form-field appearance="fill">
+      <input matInput [formControl]="deckName" placeholder="Insira o nome aqui">
+    </mat-form-field>
+  </div>
+  <div class="flex flex-row gap-6 pl-6">
+    <div class="grid grid-cols-3 gap-6 p-6 w-1/2 max-h-[550px] overflow-auto bg-gray-800" cdkDropList
+      #todoList="cdkDropList" [cdkDropListData]="availableCards" [cdkDropListConnectedTo]="[doneList]"
+      (cdkDropListDropped)="drop($event)">
+      <div class="col-start-2" *ngIf="isLoading">
+        <img class="w-72" src="../../../../../assets/pikachu-seeklogo.com.svg">
+        <p class="text-2xl">Carregando...</p>
+      </div>
+      <ng-container *ngIf="!isLoading">
+        <div *ngFor="let item of availableCards" cdkDrag>
+          <img [src]="item.images.small">
+        </div>
+      </ng-container>
+    </div>
+
+    <div [ngClass]="{'error-container': !isValidDeck()}" cdkDropList #doneList="cdkDropList"
+      [cdkDropListData]="choosenCards" [cdkDropListConnectedTo]="[todoList]"
+      class="grid grid-cols-3 gap-6 p-6 w-1/2 max-h-[550px] overflow-auto bg-gray-800"
+      (cdkDropListDropped)="drop($event)">
+      <div *ngFor="let item of choosenCards" cdkDrag><img [src]="item.images.small"></div>
     </div>
   </div>
 
-  <div [ngClass]="{'error-container': !isValidDeck()}" cdkDropList #doneList="cdkDropList"
-    [cdkDropListData]="choosenCards" [cdkDropListConnectedTo]="[todoList]"
-    class="grid grid-cols-3 gap-6 p-6 w-1/2 max-h-[650px] overflow-auto bg-gray-800"
-    (cdkDropListDropped)="drop($event)">
-    <div *ngFor="let item of choosenCards" cdkDrag><img [src]="item.images.small"></div>
+  <div class="pt-6 flex flex-row items-end justify-end">
+    <button style="height: 46px" class="w-48" mat-raised-button (click)="saveDeck()" [disabled]="!isValidDeck()"
+      color="primary">
+      {{this.isEditing ? 'Editar' : 'Cadastrar'}}
+    </button>
   </div>
-</div>
-
-<div class="pt-6 flex flex-row items-end justify-end">
-  <button mat-raised-button (click)="saveDeck()" [disabled]="!isValidDeck()" color="primary">
-    {{this.isEditing ? 'Editar' : 'Cadastrar'}}
-  </button>
 </div>

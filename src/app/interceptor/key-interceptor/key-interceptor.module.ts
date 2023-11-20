@@ -13,7 +13,6 @@ export class KeyInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    // Variável de ambiente
     const key = '06d433bd-2ca2-4883-9431-e9099ea65930';
 
     let dupReq: any;
