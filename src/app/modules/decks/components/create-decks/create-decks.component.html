@@ -1,4 +1,4 @@
-<div [formGroup]="filterForm" class="min-h-screen mt-16">
+<div [formGroup]="filterForm" class="min-h-screen mt-4">
   <div class="flex flex-row justify-between">
     <div class="flex flex-row gap-4 md:max-w-md lg:max-w-4xl">
       <mat-form-field class="pl-6" appearance="fill">
@@ -29,10 +29,19 @@
     <div class="grid grid-cols-3 gap-6 p-6 w-1/2 max-h-[550px] overflow-auto bg-gray-800" cdkDropList
       #todoList="cdkDropList" [cdkDropListData]="availableCards" [cdkDropListConnectedTo]="[doneList]"
       (cdkDropListDropped)="drop($event)">
+
+      <div class="col-start-2" *ngIf="!isLoading && availableCards.length === 0">
+        <img class="w-96" src="../../../../../assets/snorlax.png">
+        <p class="text-2xl">Ops... não achei nada</p>
+      </div>
+
+
       <div class="col-start-2" *ngIf="isLoading">
         <img class="w-72" src="../../../../../assets/pikachu-seeklogo.com.svg">
         <p class="text-2xl">Carregando...</p>
       </div>
+
+
       <ng-container *ngIf="!isLoading">
         <div *ngFor="let item of availableCards" cdkDrag>
           <img [src]="item.images.small">
