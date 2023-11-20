@@ -17,9 +17,13 @@
 
     </div>
 
-    <mat-form-field appearance="fill">
-      <input matInput [formControl]="deckName" placeholder="Insira o nome aqui">
-    </mat-form-field>
+    <span class="text-white self-center">Quantidade de cartas adicionadas: {{choosenCards.length}} </span>
+    <div class="flex flex-row gap-6">
+      <mat-form-field appearance="fill">
+
+        <input matInput [formControl]="deckName" placeholder="Insira o nome aqui">
+      </mat-form-field>
+    </div>
   </div>
   <div class="flex flex-row gap-6 pl-6">
     <div class="grid grid-cols-3 gap-6 p-6 w-1/2 max-h-[550px] overflow-auto bg-gray-800" cdkDropList

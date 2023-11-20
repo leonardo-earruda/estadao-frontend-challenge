@@ -50,7 +50,7 @@ export class CreateDecksComponent implements OnInit {
     this.isLoading = true;
     const name = this.filterForm.value.name
       ? this.filterForm.value.name
-      : 'charizard';
+      : null;
     const pageSize = this.filterForm.value.pageSize
       ? this.filterForm.value.pageSize
       : null;

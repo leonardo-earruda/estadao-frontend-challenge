@@ -6,6 +6,7 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class KeyInterceptor implements HttpInterceptor {
@@ -13,7 +14,7 @@ export class KeyInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const key = '06d433bd-2ca2-4883-9431-e9099ea65930';
+    const key = environment.apiKey;
 
     let dupReq: any;
     if (!!key) {
