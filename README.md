@@ -10,7 +10,7 @@
 
 3. Navegue até `http://localhost:4200/`.
 
-4. Para a melhor experiência na navegação, deve ser usada a resolução de ***1920/900***. 
+4. Para a melhor experiência na navegação, deve ser usada a resolução de 1920*900. 
 ---
 
 ## Arquitetura
