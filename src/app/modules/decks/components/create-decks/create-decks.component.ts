@@ -19,7 +19,7 @@ export class CreateDecksComponent implements OnInit {
   isEditing: boolean = false;
   id: string;
   currentDeck: Deck;
-  deckName: FormControl = new FormControl(null, [Validators.required]);
+  deckName: FormControl = new FormControl(null, [Validators.required, Validators.maxLength(20)]);
   filterForm: FormGroup;
   pageSizes: number[] = PAGE_SIZES;
   isLoading: boolean = false;
@@ -35,7 +35,7 @@ export class CreateDecksComponent implements OnInit {
     this.getCards();
     this.isEditing = !!this.route.snapshot.params['id'];
     this.id = this.route.snapshot.params['id'];
-    this.allDecks = JSON.parse(localStorage.getItem('decks')!);
+    this.allDecks = JSON.parse(localStorage.getItem('decks')!) ?? [];
     this.handleEditing();
   }
 

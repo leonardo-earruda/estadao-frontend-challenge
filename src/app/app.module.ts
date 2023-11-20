@@ -20,7 +20,7 @@ import { HomeComponent } from './core/home/home.component';
     MaterialModule,
     DecksModule,
     CardsModule,
-    SharedModule,
+    SharedModule
   ],
   providers: [{ provide: ErrorHandler, useClass: GlobalErrorHandler }],
   bootstrap: [AppComponent],

@@ -11,11 +11,13 @@ export class CardService {
   constructor(private http: HttpClient) {}
 
   getAll(name?: string, pageSize?: number) {
+    const formattedName = name?.replace(' ', '.');
+
     if (!name && !pageSize) {
       return this.http.get(`${this.baseUrl}/cards`);
     }
     return this.http.get(
-      `${this.baseUrl}/cards?q=name:${name}&pageSize=${pageSize}`
+      `${this.baseUrl}/cards?q=name:${formattedName}&pageSize=${pageSize}`
     );
   }
 }

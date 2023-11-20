@@ -2,7 +2,7 @@
 
   <div class="flex flex-col gap-4 p-6" *ngFor="let deck of allDecks; let i = index">
 
-    <span class="font-bold text-md xl:text-xl"> {{deck.name || 'Baralho sem nome'}} </span>
+    <span class="font-bold text-md xl:text-lg"> {{deck.name || 'Baralho sem nome'}} </span>
 
     <div class="relative" (mouseenter)="onHover(deck)" (mouseleave)="onHover(deck)">
       <img class="w-64 hover:opacity-40 hover:backdrop-blur-10 relative"

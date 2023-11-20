@@ -52,7 +52,7 @@
 
   <div class="pt-6 flex flex-row items-end justify-end">
     <button  class="w-48 smaller-btn" mat-raised-button (click)="saveDeck()"
-      [disabled]="!isValidDeck() || !deckName.value" color="primary">
+      [disabled]="!isValidDeck() || deckName.invalid" color="primary">
       {{this.isEditing ? 'Editar' : 'Cadastrar'}}
     </button>
   </div>
