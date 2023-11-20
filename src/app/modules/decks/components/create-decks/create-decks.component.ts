@@ -19,7 +19,7 @@ export class CreateDecksComponent implements OnInit {
   isEditing: boolean = false;
   id: string;
   currentDeck: Deck;
-  deckName: FormControl = new FormControl(null, [Validators.required, Validators.maxLength(20)]);
+  deckName: FormControl = new FormControl(null, [Validators.required,Validators.maxLength(20)]);
   filterForm: FormGroup;
   pageSizes: number[] = PAGE_SIZES;
   isLoading: boolean = false;
@@ -48,9 +48,7 @@ export class CreateDecksComponent implements OnInit {
 
   public getCards() {
     this.isLoading = true;
-    const name = this.filterForm.value.name
-      ? this.filterForm.value.name
-      : null;
+    const name = this.filterForm.value.name ? this.filterForm.value.name : null;
     const pageSize = this.filterForm.value.pageSize
       ? this.filterForm.value.pageSize
       : null;
@@ -59,27 +57,6 @@ export class CreateDecksComponent implements OnInit {
       this.isLoading = false;
       this.availableCards = res.data;
     });
-  }
-
-  drop(event: any) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
-    }
-  }
-
-  saveDeck() {
-    this.isEditing ? this.update() : this.create();
   }
 
   private create() {
@@ -92,11 +69,6 @@ export class CreateDecksComponent implements OnInit {
       this.allDecks.push(newDeck);
       this.setItemAndNavigate(this.allDecks);
     }
-  }
-
-  private setItemAndNavigate(arr: any) {
-    localStorage.setItem('decks', JSON.stringify(arr));
-    this.router.navigate(['/decks/all']);
   }
 
   private update() {
@@ -119,12 +91,43 @@ export class CreateDecksComponent implements OnInit {
     }
   }
 
+  handleEditing() {
+    if (this.isEditing) {
+      const decks = JSON.parse(localStorage.getItem('decks')!);
+      this.currentDeck = decks.find((res: any) => res.id.includes(this.id));
+      this.deckName.setValue(this.currentDeck.name);
+      this.choosenCards = this.currentDeck.cards;
+    }
+    return;
+  }
+
+  saveDeck() {
+    this.isEditing ? this.update() : this.create();
+  }
+
   public isValidDeck() {
     return (
       this.choosenCards.length >= 24 &&
       this.choosenCards.length <= 60 &&
       !this.hasFiveCopiesWithSameName()
     );
+  }
+
+  drop(event: any) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
   }
 
   hasFiveCopiesWithSameName() {
@@ -139,17 +142,11 @@ export class CreateDecksComponent implements OnInit {
         return true;
       }
     }
-
     return false;
   }
 
-  handleEditing() {
-    if (this.isEditing) {
-      const decks = JSON.parse(localStorage.getItem('decks')!);
-      this.currentDeck = decks.find((res: any) => res.id.includes(this.id));
-      this.deckName.setValue(this.currentDeck.name);
-      this.choosenCards = this.currentDeck.cards;
-    }
-    return;
+  private setItemAndNavigate(arr: any) {
+    localStorage.setItem('decks', JSON.stringify(arr));
+    this.router.navigate(['/decks/all']);
   }
 }

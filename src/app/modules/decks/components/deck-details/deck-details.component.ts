@@ -29,15 +29,9 @@ export class DeckDetailsComponent implements OnInit {
     this.currentDeck = decks.find((res: Deck) => res.id.includes(this.id));
   }
 
-  get pokemonSupertypeAmount() {
+  getSuperTypeValue(supertype: string) {
     return this.currentDeck?.cards?.filter(
-      (card: Card) => card.supertype === 'Pokémon'
-    ).length;
-  }
-
-  get trainerSupertypeAmount() {
-    return this.currentDeck?.cards?.filter(
-      (card: Card) => card.supertype === 'Trainer'
+      (card: Card) => card.supertype === supertype
     ).length;
   }
 
