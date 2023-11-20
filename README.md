@@ -1,27 +1,40 @@
-# EstadaoFrontendChallenge
+# Challenge Frontend Estadão
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
+## Rodando o projeto
 
-## Development server
+1. Clone esse repositório.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+        git clone https://github.com/leonardo-earruda/estadao-frontend-challenge
 
-## Code scaffolding
+2. Na sua IDE de preferência, rode o comando `npm install`.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+3. Navegue até `http://localhost:4200/`.
 
-## Build
+4. Para a melhor experiência na navegação, deve ser usada a resolução de 1920*900. 
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Arquitetura
 
-## Running unit tests
+### Geral
+- Para fazer a modularização do projeto, abstrai os requisitos dos desafios e separei a estrutura de pastas do projetos entre os módulos de: 'cards', 'decks' e 'shared', para componentes compartilhados entre os outros dois.
+  
+- Para o roteamento do projeto, adotei a estratégia de lazy loading, utilizando a abstração mencionada acima para declarar as rotas pais: ***decks*** e ***cards***, e seus respectivos filhos: ***all***, ***create*** e ***details***
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Para o tratamento de erros do projeto, utilizei a estratégia de prover um ***Global Error Handler***, que abrirá um componente de snackbar toda vez que a API externa retornar um erro.
 
-## Running end-to-end tests
+- Como biblioteca de UI's, utilizei o ***Angular Material*** 
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### API 
+- Esse projeto consome uma API externa que retorna dados referentes ao desenho **"Pokémon"**.
+  
+- Para autenticação na mesma, foi criado um **HTTP Interceptor** no projeto, que adicionara uma **API KEY** nos cabeçalhos das requisições feitas pelo nosso client.
+---
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Usabilidade
+- Para adição de cartas no baralho, utilizei a ***CDK*** do ***Angular Material*** para ***Drag & Drop***, possibilitando o usuário arrastar as cartas retornadas pela API para o containêr de cartas do baralho.
+  
+- Após a criação do baralho, o usuário será redirecionado para a tela que lista todos os seus baralhos, ao passar o mouse pelas cartas, terá a opção de editar, excluir ou ver os detalhes do mesmo.
+  
+- Caso opte por ver os detalhes, o usuário será redirecionado para tela de detalhes, aonde poderá ver uma tabela com as cartas de seu baralho, tal como um ***menu expansível* com os ***types*** e ***supertypes*** únicos
+do seu baralho.
+  
