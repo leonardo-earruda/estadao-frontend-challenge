@@ -1,27 +1,26 @@
-# EstadaoFrontendChallenge
+# Challenge Frontend Estadão
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
+## Rodando o projeto
 
-## Development server
+1. Clone esse repositório.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+        git clone https://github.com/leonardo-earruda/estadao-frontend-challenge
 
-## Code scaffolding
+2. Na sua IDE de preferência, rode o comando `npm install`.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+3. Navegue até `http://localhost:4200/`.
+---
 
-## Build
+## Arquitetura
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Geral
+- Para fazer a modularização do projeto, abstrai os requisitos dos desafios e separei a estrutura de pastas do projetos entre os módulos de: 'cards', 'decks' e 'shared', para componentes compartilhados entre os outros dois.
+  
+- Para o roteamento do projeto, adotei a estratégia de lazy loading, utilizando a abstração mencionada acima para declarar as rotas pais: ***decks*** e ***cards***, e seus respectivos filhos: ***all***, ***create*** e ***details***
 
-## Running unit tests
+- Para o tratamento de erros do projeto, utilizei a estratégia de prover um ***Global Error Handler***, que abrirá um componente de snackbar toda vez que a API externa retornar um erro.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### API 
+- Esse projeto consome uma API externa que retorna dados referentes ao desenho **"Pokémon"**.
+  
+- Para autenticação na mesma, foi criado um **HTTP Interceptor** no projeto, que adicionara uma **API KEY** nos cabeçalhos das requisições feitas pelo nosso client.
