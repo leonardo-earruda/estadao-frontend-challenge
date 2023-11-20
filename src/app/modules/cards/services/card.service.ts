@@ -11,7 +11,7 @@ export class CardService {
   constructor(private http: HttpClient) {}
 
   getAll(name?: string, pageSize?: number) {
-    const formattedName = name?.replace(' ', '.');
+    const formattedName = name?.replace(/\s/g, '.');
 
     if (!name && !pageSize) {
       return this.http.get(`${this.baseUrl}/cards`);
