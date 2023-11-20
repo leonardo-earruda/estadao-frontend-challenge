@@ -6,9 +6,9 @@ import { DeckDetailsComponent } from './components/deck-details/deck-details.com
 
 const routes: Routes = [
   { path: 'new/:id', component: CreateDecksComponent },
+  { path: 'details/:id', component: DeckDetailsComponent },
   { path: 'new', component: CreateDecksComponent },
   { path: 'all', component: AllDecksComponent },
-  { path: 'details/:id', component: DeckDetailsComponent },
 ];
 
 @NgModule({

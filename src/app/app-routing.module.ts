@@ -1,12 +1,22 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { NavigationComponent } from './core/navigation/navigation.component';
+import { HomeComponent } from './core/home/home.component';
 
 const routes: Routes = [
   {
     path: '',
+    redirectTo: '/home',
+    pathMatch: 'full',
+  },
+  {
+    path: '',
     component: NavigationComponent,
     children: [
+      {
+        path: 'home',
+        component: HomeComponent,
+      },
       {
         path: 'decks',
         loadChildren: () =>

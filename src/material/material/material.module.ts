@@ -9,6 +9,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const materialModules = [
   MatToolbarModule,
@@ -20,6 +21,7 @@ const materialModules = [
   MatTableModule,
   MatSelectModule,
   MatIconModule,
+  MatSnackBarModule,
 ];
 
 @NgModule({

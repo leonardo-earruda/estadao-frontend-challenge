@@ -6,6 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./no-data.component.css'],
 })
 export class NoDataComponent {
-  @Input() condition: boolean;
   @Input() message: string;
 }

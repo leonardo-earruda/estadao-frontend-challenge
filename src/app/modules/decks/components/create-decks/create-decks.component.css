@@ -26,3 +26,11 @@
   border: 5px solid;
   border-color: #f43f5e;
 }
+
+.btn-size {
+  height: 55px
+}
+
+.smaller-btn {
+  height: 46px
+}

@@ -13,7 +13,7 @@
         </mat-select>
       </mat-form-field>
 
-      <button mat-raised-button color="primary" style="height: 55px" (click)="getCards()"> Pesquisar</button>
+      <button class="btn-size" mat-raised-button color="primary" (click)="getCards()"> Pesquisar</button>
 
     </div>
 
@@ -30,10 +30,10 @@
       #todoList="cdkDropList" [cdkDropListData]="availableCards" [cdkDropListConnectedTo]="[doneList]"
       (cdkDropListDropped)="drop($event)">
 
-      <app-no-data [condition]="!isLoading && availableCards.length === 0"
+      <app-no-data class="col-start-2" *ngIf="!isLoading && availableCards.length === 0"
         [message]="'Ops... não achei nada'"></app-no-data>
 
-      <app-loading [condition]="isLoading" [message]="'Carregando...'"> </app-loading>
+      <app-loading class="col-start-2" *ngIf="isLoading" [message]="'Carregando...'"> </app-loading>
 
       <ng-container *ngIf="!isLoading">
         <div *ngFor="let item of availableCards" cdkDrag>
@@ -51,8 +51,8 @@
   </div>
 
   <div class="pt-6 flex flex-row items-end justify-end">
-    <button style="height: 46px" class="w-48" mat-raised-button (click)="saveDeck()" [disabled]="!isValidDeck()"
-      color="primary">
+    <button  class="w-48 smaller-btn" mat-raised-button (click)="saveDeck()"
+      [disabled]="!isValidDeck() || !deckName.value" color="primary">
       {{this.isEditing ? 'Editar' : 'Cadastrar'}}
     </button>
   </div>
