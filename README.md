@@ -10,7 +10,9 @@
 
 3. Navegue até `http://localhost:4200/`.
 
-4. Para a melhor experiência na navegação, deve ser usada a resolução de 1920*900. 
+4. Para a melhor experiência na navegação, deve ser usada a resolução de 1920*900.
+
+5. Alternativamente, visite o deploy da aplicação em [Vercel Challenge Deploy](https://estadao-frontend-challenge-2ctwm4krc-leonardo-earruda.vercel.app/home) 
 ---
 
 ## Arquitetura
