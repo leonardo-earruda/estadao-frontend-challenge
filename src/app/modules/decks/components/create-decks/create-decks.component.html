@@ -30,17 +30,10 @@
       #todoList="cdkDropList" [cdkDropListData]="availableCards" [cdkDropListConnectedTo]="[doneList]"
       (cdkDropListDropped)="drop($event)">
 
-      <div class="col-start-2" *ngIf="!isLoading && availableCards.length === 0">
-        <img class="w-96" src="../../../../../assets/snorlax.png">
-        <p class="text-2xl">Ops... não achei nada</p>
-      </div>
+      <app-no-data [condition]="!isLoading && availableCards.length === 0"
+        [message]="'Ops... não achei nada'"></app-no-data>
 
-
-      <div class="col-start-2" *ngIf="isLoading">
-        <img class="w-72" src="../../../../../assets/pikachu-seeklogo.com.svg">
-        <p class="text-2xl">Carregando...</p>
-      </div>
-
+      <app-loading [condition]="isLoading" [message]="'Carregando...'"> </app-loading>
 
       <ng-container *ngIf="!isLoading">
         <div *ngFor="let item of availableCards" cdkDrag>

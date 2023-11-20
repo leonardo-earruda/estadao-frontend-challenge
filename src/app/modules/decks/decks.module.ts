@@ -8,6 +8,7 @@ import { AllDecksComponent } from './components/all-decks/all-decks.component';
 import { CreateDecksComponent } from './components/create-decks/create-decks.component';
 import { CardsModule } from '../cards/cards.module';
 import { DeckDetailsComponent } from './components/deck-details/deck-details.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [AllDecksComponent, CreateDecksComponent, DeckDetailsComponent],
@@ -20,6 +21,7 @@ import { DeckDetailsComponent } from './components/deck-details/deck-details.com
     DecksRoutingModule,
     CardsModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [],
